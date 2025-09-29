@@ -283,7 +283,7 @@ explodeStyle.textContent = `
 document.head.appendChild(explodeStyle);
 
 // Musica di sottofondo (opzionale - commentata)
-/*
+
 function playBackgroundMusic() {
     const audio = new Audio();
     audio.src = 'https://www.soundjay.com/misc/sounds-of-nature-forest-background.mp3';
@@ -294,5 +294,4 @@ function playBackgroundMusic() {
         audio.play().catch(e => console.log('Audio non disponibile'));
     }, { once: true });
 }
-// playBackgroundMusic();
-*/
+ playBackgroundMusic();
