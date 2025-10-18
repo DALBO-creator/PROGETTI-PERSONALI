@@ -59,6 +59,17 @@ let y = 10;
 }
 */
 
+//Dichiarazioni globali:
+// In un browser, le variabili globali diventano proprietà dell'oggetto window
+// In Node.js, le variabili globali diventano proprietà dell'oggetto global
+// In entrambi i casi, globalThis fornisce un modo standard per accedere all'oggetto globale indipendentemente dall'ambiente
+require("./globals.js");        // importa il file globals.js   require() funzione usata per importare moduli (altri file JavaScript).      
+                                //                              "./globals.js" è il percorso relativo del file da importare.
+console.log(globalThis.nome); // "Luca"
+console.log(globalThis.cognome); // "Rossi"
+console.log(globalThis.eta); // 25   
+
+
 
 
 
