@@ -185,6 +185,12 @@ preferiti.forEach(event => {
 
 ---
 
+### 🔍 Svuotare la localStroage (resettare il sito e rimuovere i prefriti/biglitti acquistati)
+
+- analizzare la pagina
+- cliccare su console
+- scrivere localStorage.clear();
+
 ## 📅 Prossimi obiettivi
 
 - Aggiungere la rimozione dai preferiti
