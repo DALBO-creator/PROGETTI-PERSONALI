@@ -3,15 +3,179 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <link rel="icon" href="/favicon.ico" type="image/x-icon">
+    <link rel="icon" href="./favicon.ico" type="image/x-icon">
     <title>Home</title>
+    <link rel="stylesheet" href="./style.css">
+
 </head>
-<body>
-    <nav>
-        <a class="Home"></a>
-        <a class="Home"></a>
-        
-    </nav>
-    
+<body> 
+    <header>
+        <div class="searchbar">
+            <input type="text" placeholder="Cerca eventi, luoghi...">
+            <button type="submit">Cerca</button>
+        </div>    
+    </header>
+    <main>
+        <div class="eventContainer">
+            <div class="eventCard">
+                <img src="./images/event1.jpg" alt="Evento 1">
+                <h2>Concerto di Musica Classica</h2>
+                <p>Data: 15 Luglio 2024</p>
+                <p>Luogo: Teatro Comunale di Brescia</p>
+                <button class="buyTicket">Acquista Biglietto</button>
+                <button class="addToFavorite">Aggiungi ai Preferiti</button>
+                <button class="shareEvent">Condividi Evento</button>
+
+            </div>
+            <div class="eventCard">
+                <img src="./images/event2.jpg" alt="Evento 2">
+                <h2>Festival del Vino Franciacorta</h2>
+                <p>Data: 22 Luglio 2024</p>
+                <p>Luogo: Piazza della Loggia, Brescia</p>
+                <button class="buyTicket">Acquista Biglietto</button>
+                <button class="addToFavorite">Aggiungi ai Preferiti</button>
+                <button class="shareEvent">Condividi Evento</button>
+            </div>
+            <div class="eventCard">
+                <img src="./images/event3.jpg" alt="Evento 3">
+                <h2>Mostra d’Arte Contemporanea</h2>
+                <p>Data: 2 Agosto 2024</p>
+                <p>Luogo: Museo di Santa Giulia, Brescia</p>
+                <button class="buyTicket">Acquista Biglietto</button>
+                <button class="addToFavorite">Aggiungi ai Preferiti</button>
+                <button class="shareEvent">Condividi Evento</button>
+            </div>
+            <div class="eventCard">
+                <img src="./images/event4.jpg" alt="Evento 4">
+                <h2>Jazz sotto le Stelle</h2>
+                <p>Data: 10 Agosto 2024</p>
+                <p>Luogo: Castello di Brescia</p>
+                <button class="buyTicket">Acquista Biglietto</button>
+                <button class="addToFavorite">Aggiungi ai Preferiti</button>
+                <button class="shareEvent">Condividi Evento</button>
+            </div>
+            <div class="eventCard">
+                <img src="./images/event5.jpg" alt="Evento 5">
+                <h2>Sagra del Formaggio</h2>
+                <p>Data: 18 Agosto 2024</p>
+                <p>Luogo: Piazza Arnaldo, Brescia</p>
+                <button class="buyTicket">Acquista Biglietto</button>
+                <button class="addToFavorite">Aggiungi ai Preferiti</button>
+                <button class="shareEvent">Condividi Evento</button>
+            </div>
+            <div class="eventCard">
+                <img src="./images/event6.jpg" alt="Evento 6">
+                <h2>Notte Bianca di Brescia</h2>
+                <p>Data: 24 Agosto 2024</p>
+                <p>Luogo: Centro Storico, Brescia</p>
+                <button class="buyTicket">Acquista Biglietto</button>
+                <button class="addToFavorite">Aggiungi ai Preferiti</button>
+                <button class="shareEvent">Condividi Evento</button>
+            </div>
+            <div class="eventCard">
+                <img src="./images/event7.jpg" alt="Evento 7">
+                <h2>Spettacolo Teatrale “Romeo e Giulietta”</h2>
+                <p>Data: 1 Settembre 2024</p>
+                <p>Luogo: Teatro Grande, Brescia</p>
+                <button class="buyTicket">Acquista Biglietto</button>
+                <button class="addToFavorite">Aggiungi ai Preferiti</button>
+                <button class="shareEvent">Condividi Evento</button>
+            </div>
+            <div class="eventCard">
+                <img src="./images/event8.jpg" alt="Evento 8">
+                <h2>Mercato dell’Artigianato Locale</h2>
+                <p>Data: 7 Settembre 2024</p>
+                <p>Luogo: Corso Zanardelli, Brescia</p>
+                <button class="buyTicket">Acquista Biglietto</button>
+                <button class="addToFavorite">Aggiungi ai Preferiti</button>
+                <button class="shareEvent">Condividi Evento</button>
+            </div>
+            <div class="eventCard">
+                <img src="./images/event9.jpg" alt="Evento 9">
+                <h2>Festival del Cinema Brescia</h2>
+                <p>Data: 15 Settembre 2024</p>
+                <p>Luogo: Cinema Nuovo Eden, Brescia</p>
+                <button class="buyTicket">Acquista Biglietto</button>
+                <button class="addToFavorite">Aggiungi ai Preferiti</button>
+                <button class="shareEvent">Condividi Evento</button>
+            </div>
+        </div>    
+    </main>
+    <footer>
+        <nav class="navbar">
+            <ul>
+                <li><a href="./">SCOPRI</a></li>
+                <li><a href="./preferiti.html">PREFERITI</a></li>
+                <li><a href="./biglietti.html">BIGLIETTI</a></li>
+                <li><a href="./account.html">ACCOUNT</a></li>
+            </ul>
+        </nav>
+    </footer>
+    <script>
+        document.addEventListener("DOMContentLoaded", () => {
+            const favoriteButtons = document.querySelectorAll('.addToFavorite');
+            const ticketButtons = document.querySelectorAll('.buyTicket');
+
+            favoriteButtons.forEach(button => {
+                button.addEventListener('click', () => {
+                    const card = button.closest('.eventCard');
+                    const paragraphs = card.querySelectorAll('p');
+                    const eventData = {
+                        image: card.querySelector('img').src,
+                        title: card.querySelector('h2').textContent,
+                        date: paragraphs[0].textContent,
+                        location: paragraphs[1].textContent,
+                    };
+                
+                    let preferiti = JSON.parse(localStorage.getItem('preferiti')) || [];
+                    const exists = preferiti.some(event => event.title === eventData.title && event.date === eventData.date);
+                    if (exists) {
+                        alert('Evento già presente nei preferiti!');
+                        return;
+                    }
+                    else {
+                        preferiti.push(eventData);
+                        localStorage.setItem('preferiti', JSON.stringify(preferiti));
+                        alert('Evento aggiunto ai preferiti!');
+                    }
+                });
+            });
+
+            /*
+                const exist = prefriti.some (event => event.title === eventCard.title && event.data === eventCard.Data);  
+                prefriti.some controlla se nell'array preferiti esiste già un evento con lo stesso titolo e data. ritorna un boolean (true o false)  
+                avrei potutto usare anche find, che però ritorna l'elemento trovato invece che un boolean, 
+                oppure un ciclo for classico per scorrere l'array e confrontare ogni elemento
+            */
+
+            ticketButtons.forEach(button => {
+               button.addEventListener('click', () => {
+                  const card = button.closest('.eventCard');
+                  const paragraphs = card.querySelectorAll('p');
+                  const eventData = {
+                     image: card.querySelector('img').src,
+                     title: card.querySelector('h2').textContent,
+                     date: paragraphs[0].textContent,
+                     location: paragraphs[1].textContent,
+                  };
+              
+                  let biglietti = JSON.parse(localStorage.getItem('biglietti')) || [];
+              
+                  const exist = biglietti.some(event =>
+                     event.title === eventData.title && event.date === eventData.date
+                  );
+              
+                  if (exist) {
+                     alert('Biglietto già acquistato per questo evento!');
+                     return;
+                  } else {
+                     biglietti.push(eventData);
+                     localStorage.setItem('biglietti', JSON.stringify(biglietti));
+                     alert('Biglietto acquistato con successo!');
+                  }
+               });
+            });
+});
+    </script>
 </body>
 </html>
