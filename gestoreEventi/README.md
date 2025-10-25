@@ -77,6 +77,7 @@ const exists = preferiti.some(event =>
 
 - `.some()` controlla se esiste già un evento con lo stesso titolo e data.
 - Restituisce `true` o `false`.
+- `===` Controlla se due elementi sono uguali (anche il tipo della variabile, `==` Controlla se due elementi sono uguali, (anche tipo di variabile diverso).
 
 📌 Alternativa: `.find()` restituisce l’elemento trovato, oppure si può usare un ciclo `for`.
 
