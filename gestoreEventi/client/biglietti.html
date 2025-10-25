@@ -3,10 +3,37 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="icon" href="./favicon.ico" type="image/x-icon">
     <title>Document</title>
-    <link rel="stylesheet" href="./style.css">>
+    <link rel="stylesheet" href="./style.css">
 </head>
 <body>
+    <h1>I miei biglietti</h1>
+    <div id="ticketContainer"></div>
+    <script>
+    const container = document.getElementById("ticketContainer");
+    const biglietti = JSON.parse(localStorage.getItem("biglietti")) || [];
+
+    if (biglietti.length === 0) {
+      container.innerHTML = "<p>Nessun biglietto acquistato.</p>";
+    } else {
+      biglietti.forEach(event => {
+        const card = document.createElement("div");
+        card.classList.add("eventCard");
+        card.innerHTML = `
+          <img src="${event.image}" alt="${event.title}">
+          <h2>${event.title}</h2>
+          <p>${event.date}</p>
+          <p>${event.location}</p>
+          <button>${event.favoriteButton}</button>
+          <button>${event.shareButton}</button>
+
+        `;
+        container.appendChild(card);
+      });
+    }
+  </script>
+
     
 </body>
 </html>

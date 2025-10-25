@@ -152,11 +152,14 @@
                button.addEventListener('click', () => {
                   const card = button.closest('.eventCard');
                   const paragraphs = card.querySelectorAll('p');
+                  const buttons = card.querySelectorAll('button');
                   const eventData = {
                      image: card.querySelector('img').src,
                      title: card.querySelector('h2').textContent,
                      date: paragraphs[0].textContent,
                      location: paragraphs[1].textContent,
+                     favoriteButton: buttons[1].textContent,
+                     shareButton: buttons[2].textContent,
                   };
               
                   let biglietti = JSON.parse(localStorage.getItem('biglietti')) || [];
