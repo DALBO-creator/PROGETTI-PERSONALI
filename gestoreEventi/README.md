@@ -1,4 +1,4 @@
-# 📘 Diario di Apprendimento JavaScript – Giorno 1
+# 📘 Diario di Apprendimento JavaScript
 
 Oggi ho iniziato a scrivere codice JavaScript per la prima volta. Ho creato due pagine:
 - `index.html`: mostra gli eventi e permette di aggiungerli ai preferiti o acquistare biglietti
