@@ -115,16 +115,20 @@
         document.addEventListener("DOMContentLoaded", () => {
             const favoriteButtons = document.querySelectorAll('.addToFavorite');
             const ticketButtons = document.querySelectorAll('.buyTicket');
+            const shareButtons = document.querySelectorAll('.shareEvent');
 
             favoriteButtons.forEach(button => {
                 button.addEventListener('click', () => {
                     const card = button.closest('.eventCard');
                     const paragraphs = card.querySelectorAll('p');
+                    const buttons = card.querySelectorAll('button');
                     const eventData = {
                         image: card.querySelector('img').src,
                         title: card.querySelector('h2').textContent,
                         date: paragraphs[0].textContent,
                         location: paragraphs[1].textContent,
+                        buyTicketButton: buttons[0].innerText,
+                        shareButton: buttons[2].innerText,
                     };
                 
                     let preferiti = JSON.parse(localStorage.getItem('preferiti')) || [];
@@ -158,17 +162,15 @@
                      title: card.querySelector('h2').textContent,
                      date: paragraphs[0].textContent,
                      location: paragraphs[1].textContent,
-                     favoriteButton: buttons[1].textContent,
-                     shareButton: buttons[2].textContent,
+                     favoriteButton: buttons[1].innerText,
+                     shareButton: buttons[2].innerText,
                   };
               
-                  let biglietti = JSON.parse(localStorage.getItem('biglietti')) || [];
-              
-                  const exist = biglietti.some(event =>
+                    let biglietti = JSON.parse(localStorage.getItem('biglietti')) || [];
+                    const exist = biglietti.some(event =>
                      event.title === eventData.title && event.date === eventData.date
-                  );
-              
-                  if (exist) {
+                    );
+                    if (exist) {
                      alert('Biglietto già acquistato per questo evento!');
                      return;
                   } else {
@@ -178,7 +180,27 @@
                   }
                });
             });
-});
+
+            // condivisione dell'evento via mail (mailto) --> endcodeURIComponent (subject e body) 
+            //  per gestire spazi e caratteri speciali, poi si costruisce il link mailto con subject e body
+            //  e si reindirizza l'utente a quel link, window.location.href = `mailto:?subject=${subject}&body=${body}`; serve per
+            //  aprire il client di posta predefinito (o sceglierlo se è la prima volta) con il nuovo messaggio pronto per essere inviato.
+            
+
+            shareButtons.forEach(button => {
+                button.addEventListener("click", () => {
+                    const card = button.closest('.eventCard');
+                    const title = card.querySelector('h2').textContent;
+                    const date = card.querySelectorAll('p')[0].textContent;
+                    const location = card.querySelectorAll('p')[1].textContent;
+                    
+                    const subject = encodeURIComponent("Ti consiglio questo evento!");
+                    const body = encodeURIComponent(`Guarda questo evento:\n${title}\n${date}\n${location}`);
+                    window.location.href = `mailto:?subject=${subject}&body=${body}`;
+             });
+        });
+
+    });
     </script>
 </body>
 </html>

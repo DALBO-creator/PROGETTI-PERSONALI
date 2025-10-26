@@ -1,4 +1,199 @@
+/* ======== RESET & BASE ======== */
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+  font-family: "Inter", "Segoe UI", Arial, sans-serif;
+}
+
+body {
+  background: #121212;
+  color: #e0e0e0;
+  min-height: 100vh;
+  display: flex;
+  flex-direction: column;
+}
+
+/* ======== HEADER & SEARCH ======== */
+header {
+  background: linear-gradient(90deg, #1c1c1c, #2a2a2a);
+  padding: 1rem;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  box-shadow: 0 2px 6px rgba(0,0,0,0.5);
+  position: sticky;
+  top: 0;
+  z-index: 10;
+}
+
+.searchbar {
+  display: flex;
+  gap: 0.5rem;
+  width: 100%;
+  max-width: 600px;
+}
+
+.searchbar input {
+  flex: 1;
+  padding: 0.6rem 1rem;
+  border-radius: 25px;
+  border: none;
+  background: #2b2b2b;
+  color: #fff;
+  font-size: 1rem;
+  outline: none;
+  transition: background 0.2s;
+}
+
+.searchbar input:focus {
+  background: #333;
+}
+
+.searchbar button {
+  background: #444;
+  color: #fff;
+  border: none;
+  border-radius: 25px;
+  padding: 0.6rem 1rem;
+  cursor: pointer;
+  transition: background 0.2s, transform 0.1s;
+}
+
+.searchbar button:hover {
+  background: #555;
+  transform: scale(1.03);
+}
+
+/* ======== MAIN CONTENT ======== */
+main {
+  flex: 1;
+  padding: 2rem 1rem;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+h1 {
+  margin-bottom: 1.5rem;
+  color: #f1f1f1;
+  text-align: center;
+}
+
+/* ======== EVENT CARDS ======== */
+.eventContainer {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
+  gap: 1.5rem;
+  width: 100%;
+  max-width: 1200px;
+}
+
+.eventCard {
+  background: #1e1e1e;
+  border-radius: 16px;
+  overflow: hidden;
+  box-shadow: 0 4px 12px rgba(0,0,0,0.3);
+  transition: transform 0.2s, box-shadow 0.2s;
+  display: flex;
+  flex-direction: column;
+}
+
+.eventCard:hover {
+  transform: translateY(-4px);
+  box-shadow: 0 8px 18px rgba(0,0,0,0.4);
+}
+
 .eventCard img {
-        width: 25%;
-        height: auto;
-    }
+  width: 100%;
+  height: 160px;
+  object-fit: cover;
+}
+
+.eventCard h2 {
+  font-size: 1.2rem;
+  margin: 0.8rem 1rem 0.5rem;
+  color: #fff;
+}
+
+.eventCard p {
+  margin: 0.2rem 1rem;
+  color: #bbb;
+  font-size: 0.95rem;
+}
+
+.eventCard button {
+  margin: 0.5rem 1rem 1rem;
+  padding: 0.5rem 1rem;
+  border: none;
+  border-radius: 10px;
+  cursor: pointer;
+  background: #2c2c2c;
+  color: #fff;
+  font-size: 0.9rem;
+  transition: background 0.2s, transform 0.1s;
+}
+
+.eventCard button:hover {
+  background: #3a3a3a;
+  transform: scale(1.03);
+}
+
+/* Specifiche pulsanti */
+.buyTicket { background: #444; }
+.addToFavorite { background: #333; }
+.shareEvent, .shareButton { background: #2d2d2d; }
+
+.buyTicket:hover { background: #575757; }
+.addToFavorite:hover { background: #474747; }
+.shareEvent:hover, .shareButton:hover { background: #3f3f3f; }
+
+.removeFavorite {
+  background: #3a3a3a;
+}
+.removeFavorite:hover {
+  background: #555;
+}
+
+/* ======== FOOTER NAVBAR ======== */
+footer {
+  background: #1a1a1a;
+  padding: 0.8rem 0;
+  box-shadow: 0 -2px 6px rgba(0,0,0,0.4);
+}
+
+.navbar ul {
+  list-style: none;
+  display: flex;
+  justify-content: space-around;
+  align-items: center;
+  margin: 0;
+  padding: 0;
+}
+
+.navbar a {
+  text-decoration: none;
+  color: #ccc;
+  font-size: 0.95rem;
+  transition: color 0.2s, transform 0.1s;
+}
+
+.navbar a:hover {
+  color: #fff;
+  transform: scale(1.05);
+}
+
+/* ======== RESPONSIVE ======== */
+@media (max-width: 600px) {
+  .searchbar {
+    flex-direction: column;
+  }
+
+  .searchbar button {
+    width: 100%;
+  }
+
+  .eventCard img {
+    height: 140px;
+  }
+}

@@ -7,30 +7,82 @@
   <title>Preferiti</title>
   <link rel="stylesheet" href="./style.css">
 </head>
-<body>
+<main>
   <h1>I miei preferiti</h1>
-  <div id="favoriteContainer"></div>
+  <div class="eventContainer" id="favoriteContainer"></div>
+</main>
+<footer>
+  <nav class="navbar">
+            <ul>
+                <li><a href="./">SCOPRI</a></li>
+                <li><a href="./preferiti.html">PREFERITI</a></li>
+                <li><a href="./biglietti.html">BIGLIETTI</a></li>
+                <li><a href="./account.html">ACCOUNT</a></li>
+            </ul>
+        </nav>
+</footer>
+ <script>
+   const container = document.getElementById("favoriteContainer");
+const preferiti = JSON.parse(localStorage.getItem("preferiti")) || [];
+let biglietti = JSON.parse(localStorage.getItem("biglietti")) || [];
 
-  <script>
-    const container = document.getElementById("favoriteContainer");
-    const preferiti = JSON.parse(localStorage.getItem("preferiti")) || [];
+if (preferiti.length === 0) {
+   container.innerHTML = "<p>Nessun biglietto acquistato.</p>";
+} else {
+   preferiti.forEach((event, index) => {
+      const card = document.createElement("div");
+      card.classList.add("eventCard");
 
-    if (preferiti.length === 0) {
-      container.innerHTML = "<p>Nessun biglietto acquistato.</p>";
-    } 
-    else {
-      preferiti.forEach(event => {
-        const card = document.createElement("div");
-        card.classList.add("eventCard");
-        card.innerHTML = `
-          <img src="${event.image}" alt="${event.title}">
-          <h2>${event.title}</h2>
-          <p>${event.date}</p>
-          <p>${event.location}</p>
-        `;
-        container.appendChild(card);
+      card.innerHTML = `
+         <img src="${event.image}" alt="${event.title}">
+         <h2>${event.title}</h2>
+         <p>${event.date}</p>
+         <p>${event.location}</p>
+         <button class="buyTicket">Acquista Biglietto</button>
+         <button class="shareButton">Condividi Evento</button>
+         <button class="removeFavorite">Rimuovi dai preferiti</button>
+      `;
+
+      //  Rimuovi dai preferiti
+      const removeButton = card.querySelector(".removeFavorite");
+      removeButton.addEventListener("click", () => {
+         preferiti.splice(index, 1);
+         localStorage.setItem("preferiti", JSON.stringify(preferiti));
+         card.remove();
+         alert("Evento rimosso dai preferiti.");
       });
-    }
-  </script>
+
+      //  Acquista Biglietto
+      const buyButton = card.querySelector(".buyTicket");
+      buyButton.addEventListener("click", () => {
+         const exist = biglietti.some(b =>
+            b.title === event.title && b.date === event.date
+         );
+         if (exist) {
+            alert("Biglietto già acquistato per questo evento!");
+            return;
+         }
+         biglietti.push(event);
+         localStorage.setItem("biglietti", JSON.stringify(biglietti));
+         alert("Biglietto acquistato con successo!");
+      });
+
+      //  Condividi Evento via email
+      const shareButton = card.querySelector(".shareButton");
+      shareButton.addEventListener("click", () => {
+         const title = card.querySelector('h2').textContent;
+         const date = card.querySelectorAll('p')[0].textContent;
+         const location = card.querySelectorAll('p')[1].textContent;
+
+         const subject = encodeURIComponent("Ti consiglio questo evento!");
+         const body = encodeURIComponent(`Guarda questo evento:\n${title}\n${date}\n${location}`);
+         window.location.href = `mailto:?subject=${subject}&body=${body}`;
+      });
+
+      container.appendChild(card);
+   });
+}
+
+</script>
 </body>
 </html>
