@@ -21,8 +21,9 @@ jobs:
       - name: Aggiorna log giornaliero
         run: echo "Commit automatico del $(date)" >> daily-log.txt
 
-      - name: Commit e Push
+      - name: Make daily commit
         run: |
-          git add daily-log.txt
-          git commit -m "Auto commit del $(date)" || echo "Nessuna modifica da committare"
-          git push
+          echo "Daily commit: $(date)" >> daily.txt
+          git add daily.txt
+          git commit -m "Daily Commit $(date)" || echo "No changes to commit"
+          git push https://x-access-token:${{ github.token }} HEAD:main
