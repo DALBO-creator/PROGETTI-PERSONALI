@@ -16,7 +16,7 @@ jobs:
       - name: Configura Git
         run: |
           git config user.name "ALBO DAVIDE"
-          git config user.email "tuo@email.com"
+          git config user.email "albodavidexd@gmail.com"
 
       - name: Aggiorna log giornaliero
         run: echo "Commit automatico del $(date)" >> daily-log.txt
