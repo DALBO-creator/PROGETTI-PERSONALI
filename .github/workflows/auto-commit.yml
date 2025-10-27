@@ -2,7 +2,7 @@ name: Daily Commit
 
 on:
   schedule:
-    - cron: "8 0 * * *"  # ogni giorno alle 8:00 UTC (9:00 italiane)
+    - cron: "0 9 * * *"  # ogni giorno alle 10:00 italiane (9:00 UTC)
   workflow_dispatch:      # permette anche l'avvio manuale
 
 jobs:
