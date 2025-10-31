@@ -197,10 +197,34 @@
                     const subject = encodeURIComponent("Ti consiglio questo evento!");
                     const body = encodeURIComponent(`Guarda questo evento:\n${title}\n${date}\n${location}`);
                     window.location.href = `mailto:?subject=${subject}&body=${body}`;
-             });
+                });
+            });
+
         });
 
-    });
+            //gestione della searchbar:
+            //vedo se l'input compare nel titlo
+            //display di quelle in cui non campare = "none", in quella in cui compare = ""
+
+            document.querySelector('.searchbar input').addEventListener('input', e => {
+            const query = e.target.value.toLowerCase().trim();
+            const cards = document.querySelectorAll('.eventCard');
+            
+            cards.forEach(card => {
+            const title = card.querySelector('h2').textContent.toLowerCase();
+            const data = card.querySelector('p').textContent.toLowerCase();
+            
+        
+            // Mostra/nascondi in base alla ricerca
+            if (title.includes(query)||data.includes(query)) {
+              card.style.display = '';
+            } else {
+              card.style.display = 'none';
+            }
+
+          });
+
+        });
     </script>
 </body>
 </html>
