@@ -83,7 +83,7 @@ h1 {
 /* ======== EVENT CARDS ======== */
 .eventContainer {
   display: grid;
-  grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
+  grid-template-columns: repeat(3, minmax(260px, 1fr));
   gap: 1.5rem;
   width: 100%;
   max-width: 1200px;
@@ -188,6 +188,56 @@ footer {
   transform: scale(1.05);
 }
 
+/* ======== ACCOUNT ======== */
+.accountCard {
+  background: #1e1e1e;
+  border-radius: 16px;
+  overflow: hidden;
+  box-shadow: 0 4px 12px rgba(0,0,0,0.3);
+  transition: transform 0.2s, box-shadow 0.2s;
+  display: flex;
+  flex-direction: column;
+}
+
+.accountCard:hover {
+  transform: translateY(-4px);
+  box-shadow: 0 8px 18px rgba(0,0,0,0.4);
+}
+
+.accountCard img {
+  width: 100%;
+  height: 160px;
+  object-fit: cover;
+}
+
+.accountCard h2 {
+  font-size: 1.2rem;
+  margin: 0.8rem 1rem 0.5rem;
+  color: #fff;
+}
+
+.accountCard p {
+  margin: 0.2rem 1rem;
+  color: #bbb;
+  font-size: 0.95rem;
+}
+
+.accountCard button {
+  margin: 0.5rem 1rem 1rem;
+  padding: 0.5rem 1rem;
+  border: none;
+  border-radius: 10px;
+  cursor: pointer;
+  background: #2c2c2c;
+  color: #fff;
+  font-size: 0.9rem;
+  transition: background 0.2s, transform 0.1s;
+}
+
+.accountCard button:hover {
+  background: #3a3a3a;
+  transform: scale(1.03);
+}
 /* ======== RESPONSIVE ======== */
 @media (max-width: 600px) {
   .searchbar {
@@ -199,6 +249,9 @@ footer {
   }
 
   .eventCard img {
+    height: 140px;
+  }
+   .accountCard img {
     height: 140px;
   }
 }

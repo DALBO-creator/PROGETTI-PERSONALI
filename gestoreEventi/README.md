@@ -402,5 +402,103 @@ preferiti.forEach(event => {
 - Rendere il sito responsive
 - Aggiungere funzionalità di ricerca
 ```
+Certo Davide! Ecco il contenuto aggiornato da inserire nel tuo `README.md`, in formato Markdown, che documenta le ultime funzionalità che hai aggiunto: la searchbar e la pagina account con contatori.
+
+---
+
+## 📘 Diario di Apprendimento JavaScript – Giorno 2
+
+Oggi ho aggiunto due nuove funzionalità importanti:
+- Una **searchbar funzionante** per filtrare gli eventi
+- Una nuova pagina **`account.html`** che mostra i dati utente e i contatori di attività
+
+---
+
+### 🔎 Funzionalità di ricerca eventi
+
+```js
+document.querySelector('.searchbar input').addEventListener('input', e => {
+  const inputAttuale = e.target.value.toLowerCase().trim();
+  const cards = document.querySelectorAll('.eventCard');
+
+  cards.forEach(card => {
+    const title = card.querySelector('h2').textContent.toLowerCase();
+    const data = card.querySelector('p').textContent.toLowerCase();
+
+    if (title.includes(inputAttuale) || data.includes(inputAttuale)) {
+      card.style.display = '';
+    } else {
+      card.style.display = 'none';
+    }
+  });
+});
+```
+
+- `addEventListener('input')`: ascolta ogni modifica nella barra di ricerca.
+- `toLowerCase().trim()`: rende la ricerca insensibile a maiuscole/spazi.
+- `includes()`: verifica se il testo cercato è presente nel titolo o nella data.
+- `card.style.display`: mostra solo le card che corrispondono alla ricerca.
+
+---
+
+### 👤 Pagina Account con contatori
+
+```js
+function CounterUpdate() {
+  const preferiti = JSON.parse(localStorage.getItem("preferiti")) || [];
+  const biglietti = JSON.parse(localStorage.getItem("biglietti")) || [];
+
+  document.querySelector(".added").textContent = `⭐ Eventi nei preferiti: ${preferiti.length}`;
+  document.querySelector(".bought").textContent = `🎟️ Biglietti acquistati: ${biglietti.length}`;
+}
+```
+
+- Funzione che legge i dati da `localStorage` e aggiorna i contatori.
+- I contatori si aggiornano anche dopo lo svuotamento dei dati.
+
+---
+
+### 🧹 Svuotamento dei dati con aggiornamento live
+
+```js
+document.querySelector(".clearFavorite").addEventListener("click", () => {
+  localStorage.removeItem("preferiti");
+  CounterUpdate();
+  alert("Preferiti svuotati!");
+});
+
+document.querySelector(".clearTicket").addEventListener("click", () => {
+  localStorage.removeItem("biglietti");
+  CounterUpdate();
+  alert("Biglietti svuotati!");
+});
+```
+
+- Dopo la rimozione, viene richiamata `CounterUpdate()` per aggiornare il numero.
+- Stessa logica usata per i biglietti.
+
+---
+
+## 🧠 Nuovi concetti appresi
+
+- Uso di `includes()` per confronti parziali tra stringhe.
+- Gestione dinamica della visibilità con `style.display`.
+- Creazione di funzioni riutilizzabili per aggiornare il DOM.
+- Integrazione tra HTML e JavaScript per creare pagine interattive.
+- Aggiornamento live del contenuto dopo modifiche al `localStorage`.
+
+---
+
+## 📅 Prossimi obiettivi aggiornati
+
+- Aggiungere badge o icone visive per eventi acquistati.
+- Migliorare la UX della searchbar (es. placeholder, reset).
+- Aggiungere un form per modificare i dati utente in `account.html`.
+- Separare il codice JS in file esterni.
+- Aggiungere filtro per data o prezzo.
+
+---
+
+
  
 

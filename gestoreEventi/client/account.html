@@ -1,11 +1,69 @@
 <!DOCTYPE html>
 <html lang="it">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Document</title>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Il Mio Account</title>
+  <link rel="stylesheet" href="style.css" />
 </head>
 <body>
+  <header>
+    <h1>Il Mio Account</h1>
+  </header>
+
+  <main>
+    <section class="accountCard" style="max-width: 700px; width: 100%;">
+      <h2>Benvenuto, Davide!</h2>
+      <p>Email: <strong>davide@email.com</strong></p>
+      <p>Località: <strong>Brescia, Italia</strong></p>
+      <p class="added"></p>
+      <p class="bought"></p>
+      <button class="clearFavorite">Svuota Preferiti</button>
+      <button class="clearTicket">Svuota Biglietti</button>
+    </section>
+  </main>
+
+  <footer>
+    <nav class="navbar">
+      <ul>
+        <li><a href="index.html">SCOPRI</a></li>
+        <li><a href="biglietti.html">PREFERITI</a></li>
+        <li><a href="preferiti.html">BIGLIETTI</a></li>
+        <li><a href="account.html">ACCOUNT</a></li>
+      </ul>
+    </nav>
+  </footer>
+
+  <script>
+    let pFavorite = document.querySelector(".added");
+    let pTicket = document.querySelector(".bought");
+
+    //recupera gli array da localStorage
+    function CounterUpdate(){
+    const preferiti = JSON.parse(localStorage.getItem("preferiti")) || [];
+    const biglietti = JSON.parse(localStorage.getItem("biglietti")) || [];
     
+    // Mostra il conteggio
+    
+    pFavorite.textContent = `⭐ Eventi nei preferiti: ${preferiti.length}`;
+    pTicket.textContent = `🎟️ Biglietti acquistati: ${biglietti.length}`;
+    }
+
+    CounterUpdate();
+
+
+    document.querySelector(".clearFavorite").addEventListener("click", () => {
+      localStorage.removeItem("preferiti");
+      CounterUpdate();
+      alert("Preferiti svuotati!");
+      
+    });
+
+    document.querySelector(".clearTicket").addEventListener("click", () => {
+      localStorage.removeItem("biglietti");
+      CounterUpdate();
+      alert("Biglietti svuotati!");
+    });
+  </script>
 </body>
 </html>
