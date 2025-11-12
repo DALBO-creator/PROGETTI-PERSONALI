@@ -29,7 +29,7 @@ const preferiti = JSON.parse(localStorage.getItem("preferiti")) || [];
 let biglietti = JSON.parse(localStorage.getItem("biglietti")) || [];
 
 if (preferiti.length === 0) {
-   container.innerHTML = "<p>Nessun biglietto acquistato.</p>";
+   container.innerHTML = "<p>Nessun biglietto nei preferiti.</p>";
 } else {
    preferiti.forEach((event, index) => {
       const card = document.createElement("div");
