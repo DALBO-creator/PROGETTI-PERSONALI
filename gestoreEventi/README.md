@@ -499,6 +499,14 @@ document.querySelector(".clearTicket").addEventListener("click", () => {
 
 ---
 
+## nuove funzionalità
+
+- Aggiunta possibilità di modificare l'email nella sezione account.
+
+---
+
+
+
 
  
 

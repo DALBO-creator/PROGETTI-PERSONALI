@@ -14,7 +14,7 @@
   <main>
     <section class="accountCard" style="max-width: 700px; width: 100%; ">
       <h2>Benvenuto, Davide!</h2>
-      <p>Email: <strong>davide@email.com</strong></p>
+      <p>Email: <strong id="emailAttuale">davide@email.com</strong></p>
       <p>Località: <strong>Brescia, Italia</strong></p>
       <p class="added"></p>
       <p class="bought"></p>
@@ -25,9 +25,9 @@
 
     <section class="accountCard" style="max-width: 700px; width: 100%; margin-top: 20px; padding-bottom: 20px; padding-left: 20px;">
       <h2>Modifica mail</h2>
-      <div class="searchbar, ">
-            <input type="text" placeholder="Cerca eventi, luoghi...">
-            <button class="Submit">MODIFICA</button>
+      <div class="searchbar">
+            <input id="emailInput" type="text" placeholder="Inserisci mail">
+            <button id="emailSubmit">MODIFICA</button>
         </div>
       
     </section>
@@ -50,12 +50,18 @@
   <script>
     let pFavorite = document.querySelector(".added");
     let pTicket = document.querySelector(".bought");
+    const editBotton = document.getElementById("emailSubmit");
+
+
+    const emailSalvata = localStorage.getItem("emailUtente");
+      if (emailSalvata) {
+        document.getElementById("emailAttuale").textContent = emailSalvata;
+}
 
     //recupera gli array da localStorage
     function CounterUpdate(){
     const preferiti = JSON.parse(localStorage.getItem("preferiti")) || [];
     const biglietti = JSON.parse(localStorage.getItem("biglietti")) || [];
-    
     // Mostra il conteggio
     
     pFavorite.textContent = `⭐ Eventi nei preferiti: ${preferiti.length}`;
@@ -76,6 +82,21 @@
       localStorage.removeItem("biglietti");
       CounterUpdate();
       alert("Biglietti svuotati!");
+    });
+
+
+    editBotton.addEventListener("click",  () => {
+      const emailInput = document.getElementById("emailInput");
+      const email = emailInput.value.trim();
+
+      if (email === ""){
+        alert("Email non valida..");
+        return;
+      }
+      const emailAttuale = document.getElementById("emailAttuale");
+      emailAttuale.innerHTML = email;
+      alert('Email aggiornata!');
+      localStorage.setItem ("emailUtente", email);
     });
   </script>
 </body>
