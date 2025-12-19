@@ -1,0 +1,64 @@
+<!DOCTYPE html>
+<html lang="it">
+<head>
+  <meta charset="utf-8" />
+  <title>Centrali Nucleari</title>
+
+  <link
+    rel="stylesheet"
+    href="https://unpkg.com/leaflet/dist/leaflet.css"
+  />
+
+  <style>
+    #map {
+      height: 90vh;
+      width: 100%;
+    }
+  </style>
+</head>
+<body>
+
+<h2>Mappa delle centrali nucleari</h2>
+<div id="map"></div>
+
+<script src="https://unpkg.com/leaflet/dist/leaflet.js"></script>
+
+<script>
+  // 1Inizializzo la mappa
+  const map = L.map('map').setView([20, 0], 2);
+
+  L.tileLayer('https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png', {
+    attribution: '© OpenStreetMap'
+  }).addTo(map);
+
+  // URL JSON
+  const source =
+    'https://raw.githubusercontent.com/cristianst85/GeoNuclearData/master/data/json/denormalized/nuclear_power_plants.json';
+
+  const url =
+    'https://api.allorigins.win/raw?url=' + encodeURIComponent(source);
+
+  //Fetch e marker
+  fetch(url)
+    .then(res => res.json())
+    .then(data => {
+      data.forEach(p => {
+        const lat = Number(p.Latitude);
+        const lon = Number(p.Longitude);
+        if (!isNaN(lat) && !isNaN(lon)) {
+          L.marker([lat, lon])
+            .addTo(map)
+            .bindPopup(`
+              <strong>${p.Name}</strong><br>
+              Paese: ${p.Country}<br>
+              Stato: ${p.Status}<br>
+              Capacità: ${p.Capacity ?? 'N/D'} MW
+            `);
+        }
+      });
+    })
+    .catch(err => console.error(err));
+</script>
+
+</body>
+</html>
